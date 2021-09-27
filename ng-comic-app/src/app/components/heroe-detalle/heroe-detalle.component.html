@@ -1,1 +1,23 @@
-<p>heroe-detalle works!</p>
+<h1 class="animated fadeIn fast">{{heroe.nombre}}
+  <!-- <small>{{heroe.aparicion}}</small> -->
+  <small class="text-muted">{{heroe.aparicion}}</small>
+</h1>
+<hr>
+<div class="row animated fadeIn fast">
+  <div class="col-md-4">
+    <img [src]="heroe.img" [alt]="heroe.nombre" class="img-fluid">
+    <br><br>    
+    <div class="d-grid gap-2">
+      <a [routerLink]="[ '/heroes']" class="btn btn-outline-danger">Regresar</a>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h3>{{heroe.nombre}}</h3>
+    <hr>
+    <p>{{heroe.bio}}</p>
+    <div>
+      <img class="img-logo" src="assets/img/marvel-logo.png" alt="DC" *ngIf="heroe.casa == 'Marvel'">
+      <img class="img-logo" src="assets/img/dc-logo.jpg" alt="Marvel" *ngIf="heroe.casa == 'DC'">
+    </div>
+  </div>
+</div>
