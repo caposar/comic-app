@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { stringify } from 'querystring';
 import { Heroe, HeroesService } from 'src/app/servicios/heroes.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -12,17 +12,31 @@ import { Router } from '@angular/router';
 export class HeroesComponent implements OnInit {
 
   heroes: Heroe[] = [];
+  mensajeSinResultados: string = '';
 
-  constructor(private heroesService: HeroesService, private router: Router) { }
+  constructor(private heroesService: HeroesService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.heroes = this.heroesService.getHeroes();
-    console.log("Heroes: ", this.heroes);
-    console.log("Heroes: ", JSON.stringify(this.heroes));
+    this.cargarHeroes();
   }
 
   verHeroe(i: number) {
     this.router.navigate(['/heroes', i]);
+  }
+
+  cargarHeroes() {
+    this.activatedRoute.paramMap.subscribe(params => {
+      if (params.has('texto')) {
+        const texto = params.get('texto');
+        this.heroes = this.heroesService.buscarHeroes(texto);
+        this.mensajeSinResultados = `No se encontraron resultados para la busqueda "${texto}".`;
+      } else {
+        this.heroes = this.heroesService.getHeroes();
+        this.mensajeSinResultados = `No se encontraron resultados.`;
+      }
+      // console.log("Heroes: ", this.heroes);
+      // console.log("Heroes: ", JSON.stringify(this.heroes));
+    });
   }
 
 }
