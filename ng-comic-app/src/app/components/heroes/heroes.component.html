@@ -4,6 +4,10 @@
 </h1>
 <hr>
 
+<div class="alert alert-warning animated fadeIn fast" role="alert" *ngIf="this.heroes.length === 0">
+  {{mensajeSinResultados}}
+</div>
+
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col" *ngFor="let heroe of heroes; let i = index">
     <div class="card animated fadeIn fast">
