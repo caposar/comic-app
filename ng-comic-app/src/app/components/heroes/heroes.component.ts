@@ -20,8 +20,8 @@ export class HeroesComponent implements OnInit {
     this.cargarHeroes();
   }
 
-  verHeroe(i: number) {
-    this.router.navigate(['/heroes', i]);
+  verHeroe(id: number) {
+    this.router.navigate(['/heroes', id]);
   }
 
   cargarHeroes() {

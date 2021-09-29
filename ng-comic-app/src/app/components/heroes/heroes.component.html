@@ -17,8 +17,8 @@
         <p class="card-text">{{heroe.bio}}</p>
         <p class="card-text"><small class="text-muted">{{heroe.aparicion}}</small></p>
         <div class="d-grid gap-2">
-          <button class="btn btn-primary" type="button" (click)="verHeroe(i)">Ver más...</button>
-          <!-- <a class="btn btn-primary" [routerLink]="[ '/heroes', i ]">Ver más...</a> -->
+          <button class="btn btn-primary" type="button" (click)="verHeroe(heroe.id)">Ver más...</button>
+          <!-- <a class="btn btn-primary" [routerLink]="[ '/heroes', heroe.id ]">Ver más...</a> -->
         </div>
       </div>
     </div>
